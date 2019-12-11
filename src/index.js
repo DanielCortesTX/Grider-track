@@ -1,7 +1,17 @@
+require('./models/User')
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+
+const authRoutes = require('./routes/authRoutes')
+
 const mongoURI = require('../config/keys').mongoURI
+
+
 const app = express()
+
+app.use(bodyParser.json())
+app.use(authRoutes)
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
